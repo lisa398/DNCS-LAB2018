@@ -22,14 +22,14 @@ Vagrant.configure("2") do |config|
     routera.vm.hostname = "router-a"
     routera.vm.network "private_network", virtualbox__intnet: "broadcast_router_a", auto_config: false
     routera.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
-    routera.vm.provision "shell", path: "common.sh"
+    routera.vm.provision "shell", path: "ROUTER-AtoC.sh"
   end
   config.vm.define "router-c" do |routerc|
     routerc.vm.box = "minimal/trusty64"
     routerc.vm.hostname = "router-c"
     routerc.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
     routerc.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
-    routerc.vm.provision "shell", path: "common.sh"
+    routerc.vm.provision "shell", path: "ROUTER-CtoA.sh"
   end
   config.vm.define "switch" do |switch|
     switch.vm.box = "minimal/trusty64"
@@ -37,24 +37,24 @@ Vagrant.configure("2") do |config|
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_router_a", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    switch.vm.provision "shell", path: "switch.sh"
+    switch.vm.provision "shell", path: "SWITCH.sh"
   end
   config.vm.define "host-a" do |hosta|
     hosta.vm.box = "minimal/trusty64"
     hosta.vm.hostname = "host-a"
     hosta.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
-    hosta.vm.provision "shell", path: "common.sh"
+    hosta.vm.provision "shell", path: "HOST1A.sh"
   end
   config.vm.define "host-b" do |hostb|
     hostb.vm.box = "minimal/trusty64"
     hostb.vm.hostname = "host-b"
     hostb.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    hostb.vm.provision "shell", path: "docker.sh"
+    hostb.vm.provision "shell", path: "HOST1B.sh"
   end
   config.vm.define "host-c" do |hostc|
     hostc.vm.box = "minimal/trusty64"
     hostc.vm.hostname = "host-c"
     hostc.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
-    hostc.vm.provision "shell", path: "docker.sh"
+    hostc.vm.provision "shell", path: "HOST2C.sh"
   end
 end
