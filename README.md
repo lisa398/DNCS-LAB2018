@@ -414,7 +414,7 @@ This is the hostc website homepage
 -   Clone this repository
 
     ```bash
-    ~$ git clone https://github.com/fabiodellagiustina/dncs-lab.git
+    ~$ git clone
     ```
 
 -   Move into the repository and start creating the machines (on first launch, you don't need `--provision`, it will do it by default)
@@ -436,20 +436,20 @@ This is the hostc website homepage
 
     ```bash
     ~/dncs-lab$ vagrant ssh host-1-a
-    vagrant@host-1-a:~$ ping 172.22.2.225
+    vagrant@host-1-a:~$ ping 172.27.2.225
     ```
 
     and vice versa:
 
     ```bash
     ~/dncs-lab$ vagrant ssh host-1-b
-    vagrant@host-1-b:~$ ping 172.22.1.1
+    vagrant@host-1-b:~$ ping 172.27.1.1
     ```
 
 -   To browse the website hosted on _host-2-c_:
 
     ```bash
-    curl 172.22.3.253
+    curl 172.27.3.253
     ```
 
     The output will be:
