@@ -2,7 +2,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y docker-ce
 apt install -y curl --assume-yes
-vagrant provision host-b
+vagrant provision host-1-b
 
 # Set-up the ip add
 ip addr add 172.27.2.225/27 dev eth1

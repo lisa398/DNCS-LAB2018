@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     router1.vm.hostname = "router-1"
     router1.vm.network "private_network", virtualbox__intnet: "broadcast_router_1", auto_config: false
     router1.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
-    router1.vm.provision "shell", path: "ROUTER-AtoC.sh"
+    router1.vm.provision "shell", path: "ROUTER-1to2.sh"
   end
   config.vm.define "router-2" do |router2|
     router2.vm.box = "minimal/trusty64"
