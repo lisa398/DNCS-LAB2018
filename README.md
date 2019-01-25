@@ -71,21 +71,21 @@ This repository contains the Vagrant files required to run the network.
 
 To reduce the amount of IP necessary,I decided to allocate:
 
--   **A** for _host-1-a_, _router-1_ ,I used _/24_ as netmask with which you can address up to 254 hosts [2<sup>32-24</sup>-2]
+-   **A**: for _host-1-a_, _router-1_ -> I used _/24_ as netmask with which you can address up to 254 hosts [2<sup>32-24</sup>-2]
 
--   **B** for _host-1-b_, _router-1_ ,I used _/27_ as netmask with which you can address up to 30 hosts [2<sup>32-27</sup>-2].
+-   **B**: for _host-1-b_, _router-1_  -> I used _/27_ as netmask with which you can address up to 30 hosts [2<sup>32-27</sup>-2].
 
--   **C** for _host-2-c_ and _router-2_,I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
+-   **C**: for _host-2-c_ and _router-2_ -> I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
 
--   **D** for _router-1_ and _router-2_, so I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
+-   **D**: for _router-1_ and _router-2_ -> I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
 
 For the last two point 2 hosts are enough for our network.
 
 | Subnet | Devices (Interface)                   | Network address   | Netmask         | # of hosts              |
 | ------ | ------------------------------------- | ----------------- | --------------- | ----------------------- |
-| A      | router-1 (eth1.10)<br>host-1-a (eth1) | 172.22.1.0/24     | 255.255.255.0   | 2<sup>32-24</sup>-2=254 |
-| B      | router-1 (eth1.20)<br>host-1-b (eth1) | 172.22.2.224/27   | 255.255.255.224 | 2<sup>32-27</sup>-2=30  |
-| C      | router-2 (eth1)<br>host-2-c (eth1)    | 172.22.3.252/30   | 255.255.255.252 | 2<sup>32-30</sup>-2=2   |
+| A      | router-1 (eth1.10)<br>host-1-a (eth1) | 172.27.1.0/24     | 255.255.255.0   | 2<sup>32-24</sup>-2=254 |
+| B      | router-1 (eth1.20)<br>host-1-b (eth1) | 172.27.2.224/27   | 255.255.255.224 | 2<sup>32-27</sup>-2=30  |
+| C      | router-2 (eth1)<br>host-2-c (eth1)    | 172.27.3.252/30   | 255.255.255.252 | 2<sup>32-30</sup>-2=2   |
 | D      | router-1 (eth2)<br>router-2 (eth2)    | 172.31.255.252/30 | 255.255.255.252 | 2<sup>32-30</sup>-2=2   |
 
 ### VLANs
