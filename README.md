@@ -69,15 +69,17 @@ This repository contains the Vagrant files required to run the network.
 
 ### Subnets
 
-As in class, I decided to set up 4 different subnets:
+To reduce the amount of IP necessary,I decided to allocate:
 
--   **A** for _host-1-a_, _router-1_ and other 128 hosts, so I used _/24_ as netmask with which you can address up to 2<sup>32-24</sup>-2=254 hosts
+-   **A** for _host-1-a_, _router-1_ ,I used _/24_ as netmask with which you can address up to 254 hosts [2<sup>32-24</sup>-2]
 
--   **B** for _host-1-b_, _router-1_ and other 23 hosts, so I used _/27_ as netmask with which you can address up to 2<sup>32-27</sup>-2=30 hosts
+-   **B** for _host-1-b_, _router-1_ ,I used _/27_ as netmask with which you can address up to 30 hosts [2<sup>32-27</sup>-2].
 
--   **C** for _host-2-c_ and _router-2_, so I used _/30_ as netmask with which you can address up to 2<sup>32-30</sup>-2=2 hosts
+-   **C** for _host-2-c_ and _router-2_,I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
 
--   **D** for _router-1_ and _router-2_, so I used _/30_ as netmask with which you can address up to 2<sup>32-30</sup>-2=2 hosts
+-   **D** for _router-1_ and _router-2_, so I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
+
+For the last two point 2 hosts are enough for our network.
 
 | Subnet | Devices (Interface)                   | Network address   | Netmask         | # of hosts              |
 | ------ | ------------------------------------- | ----------------- | --------------- | ----------------------- |
