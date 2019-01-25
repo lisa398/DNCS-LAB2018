@@ -1,12 +1,10 @@
 # DNCS-LAB assigment
 
-Design of Networks and Communication Systems  
+This repository contains the Vagrant files required to run the network.
 A.Y. 2018/19  
-University of Trento
 
 ## Table of contents
 
--   [Before starting](#before-starting)
 -   [Assignment by Nicola Arnoldi](#assignment-by-nicola-arnoldi)
 -   [Network map](#network-map)
 -   [Network configuration](#network-configuration)
@@ -34,9 +32,6 @@ University of Trento
         -   [Provisioning script](#host-2-c--provisioning-script)
 -   [How-to](#how-to)
 
-## Before starting
-
-Do you know Vagrant? No? You must check [this](https://www.vagrantup.com/)!
 
 ## Assignment by Nicola Arnoldi
 
