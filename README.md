@@ -95,12 +95,12 @@ The newtork has only one connection between [_router-1_] and [_switch_], the use
                  |            |                
                  +  router-1  +
              eth0|            |eth2         
-                 +-----+------+                 
+                 +-----+------+          +--------------+       
                        |eth1             | VID | Subnet |
                        |                 | --- | ------ |
                        |                 |  10 | A      |
                        |                 |  20 | B      |   
-                       |                              
+                       |                 +--------------+            
                        |                         
                        |eth1                   
             +----------+-----------+         
@@ -115,16 +115,16 @@ The newtork has only one connection between [_router-1_] and [_switch_], the use
 
 I chose lower IP addresses for hosts and higher for routers.
 
-| Device   | Interface | IP                | Subnet |
-| -------- | --------- | ----------------- | ------ |
-| host-1-a | eth1      | 172.22.1.1/24     | A      |
-| router-1 | eth1.10   | 172.22.1.254/24   | A      |
-| host-1-b | eth1      | 172.22.2.225/27   | B      |
-| router-1 | eth1.20   | 172.22.2.254/27   | B      |
-| host-2-c | eth1      | 172.22.3.253/30   | C      |
-| router-2 | eth1      | 172.22.3.254/30   | C      |
-| router-1 | eth2      | 172.31.255.253/30 | D      |
-| router-2 | eth2      | 172.31.255.254/30 | D      |
+| Device   | Interface | IP                | Subnet | VLAN VID  |
+|:--------:|:---------:|:-----------------:|:------:|:---------:|
+| host-1-a | `eth1`    | 172.27.1.1/24     | A      | Untagged  |
+| router-1 | `eth1.10` | 172.27.1.254/24   | A      |   10      |
+| host-1-b | `eth1`    | 172.27.2.225/27   | B      | Untagged  |
+| router-1 | `eth1.20` | 172.27.2.254/27   | B      |   20      |
+| host-2-c | `eth1`    | 172.27.3.253/30   | C      | Untagged  |
+| router-2 | `eth1`    | 172.27.3.254/30   | C      | Untagged  |
+| router-1 | `eth2`    | 172.31.255.253/30 | D      |    --     |
+| router-2 | `eth2`    | 172.31.255.254/30 | D      | Untagged  |
 
 ## Vagrant and devices configuration
 
