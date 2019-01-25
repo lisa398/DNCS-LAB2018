@@ -6,7 +6,6 @@ This repository contains the Vagrant files required to run the network.
 
 ## Table of contents
 
--   [Assignment by Nicola Arnoldi](#assignment-by-nicola-arnoldi)
 -   [Network map](#network-map)
 -   [Network configuration](#network-configuration)
     -   [Subnets](#subnets)
@@ -32,16 +31,6 @@ This repository contains the Vagrant files required to run the network.
         -   [Virtual machine configuration](#host-2-c--virtual-machine-configuration)
         -   [Provisioning script](#host-2-c--provisioning-script)
 -   [How-to](#how-to)
-
-
-## Assignment by Nicola Arnoldi
-
-Based on the _Vagrantfile​_ and the provisioning scripts available at <https://github.com/dustnic/dncs-lab>, the candidate is required to design a working network in witch any host configured and attached to​ _router-1​_ (through _switch​_) can browse a website hosted on _host-2-c_.
-Subnetting must be designed to meet the following requirements (no need to create more hosts than described in the _Vagrantfile_):
-
--   up to 130 hosts in the same subnet of​ _host-1-a_
--   up to 25 hosts in the same subnet of _host-1-b_
--   consume as few IP addresses as possible
 
 ## Network map
 
