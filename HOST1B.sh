@@ -2,6 +2,9 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y docker-ce
 apt install -y curl --assume-yes
-ip addr add 192.168.20.1/27 dev eth1
+vagrant provision host-b
+
+# Set-up the ip add
+ip addr add 172.27.2.225/27 dev eth1
 ip link set eth1 up
-ip route add 192.168.0.0/16 via 192.168.20.30
+ip route replace 172.16.0.0/12 via 172.27.2.254
