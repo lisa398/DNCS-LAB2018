@@ -131,7 +131,7 @@ I chose lower IP addresses for hosts and higher for routers.
 In [Vagrantfile](/Vagrantfile) with the following lines, I create and configure 6 virtual machines, one for each network device.
 
 ```ruby
-config.vm.define "router-1" do |router1|
+config.vm.define "router-1" do |routera|
   ...
 end
 config.vm.define "router-2" do |router2|
@@ -164,33 +164,39 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "router-1" do |router1|
   router1.vm.box = "minimal/trusty64"
   router1.vm.hostname = "router-1"
-  router1.vm.network "private_network", virtualbox__intnet: "router1-switch", auto_config: false
-  router1.vm.network "private_network", virtualbox__intnet: "router1-router2", auto_config: false
-  router1.vm.provision "shell", path: "router-1.sh"
+  router1.vm.network "private_network", virtualbox__intnet: "broadcast_router_1", auto_config: false
+  router1.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
+  router1.vm.provision "shell", path: "ROUTER-1to2.sh"
 end
 ```
 
-After VM installation, it will run _router-1.sh_ provisioning script.
+After VM installation, it will run _ROUTER-1to2.sh_ provisioning script.
 
 #### router-1: Provisioning script
 
 In [router-1.sh](/router-1.sh) with the following lines, I add the 2 VLAN links necessary to trunk the connection between _router-1_ and _switch_.
 
 ```bash
-ip link add link eth1 name eth1.10 type vlan id 10
-ip link add link eth1 name eth1.20 type vlan id 20
+ip link add link eth1 name eth1.H10 type vlan id 10
+ip link add link eth1 name eth1.H20 type vlan id 20
 ```
 
 Then I assign IP addresses for each interface and set them up.
 
 ```bash
-ip addr add 172.22.1.254/24 dev eth1.10
-ip addr add 172.22.2.254/27 dev eth1.20
-ip addr add 172.31.255.253/30 dev eth2
 ip link set eth1 up
-ip link set eth1.10 up
-ip link set eth1.20 up
 ip link set eth2 up
+ip link set eth1.H10 up
+ip link set eth1.H20 up
+
+ip addr add 172.27.1.254/24 dev eth1.H10
+ip addr add 172.27.2.254/27 dev eth1.H20
+ip addr add 172.31.255.253/30 dev eth2
+
+ip link set eth1 up
+ip link set eth2 up
+ip link set eth1.H10 up
+ip link set eth1.H20 up
 ```
 
 Finally I enable IP forwarding and FRRouting configuring OSPF protocol.
@@ -217,20 +223,20 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "router-2" do |router2|
   router2.vm.box = "minimal/trusty64"
   router2.vm.hostname = "router-2"
-  router2.vm.network "private_network", virtualbox__intnet: "router2-host2c", auto_config: false
-  router2.vm.network "private_network", virtualbox__intnet: "router1-router2", auto_config: false
-  router2.vm.provision "shell", path: "router-2.sh"
+  router2.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
+  router2.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
+  router2.vm.provision "shell", path: "ROUTER-2to1.sh"
 end
 ```
 
-After VM installation, it will run _router-2.sh_ provisioning script.
+After VM installation, it will run _router-2to1.sh_ provisioning script.
 
 #### router-2: Provisioning script
 
-In [router-2.sh](/router-2.sh) with the following lines, I assign IP addresses for each interface and set them up.
+In [router-2to1.sh](/router-2to1.sh) with the following lines, I assign IP addresses for each interface and set them up.
 
 ```bash
-ip addr add 172.22.3.254/30 dev eth1
+ip addr add 172.27.3.254/30 dev eth1
 ip addr add 172.31.255.254/30 dev eth2
 ip link set eth1 up
 ip link set eth2 up
@@ -261,18 +267,18 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "switch" do |switch|
   switch.vm.box = "minimal/trusty64"
   switch.vm.hostname = "switch"
-  switch.vm.network "private_network", virtualbox__intnet: "router1-switch", auto_config: false
-  switch.vm.network "private_network", virtualbox__intnet: "switch-host1a", auto_config: false
-  switch.vm.network "private_network", virtualbox__intnet: "switch-host1b", auto_config: false
-  switch.vm.provision "shell", path: "switch.sh"
+  switch.vm.network "private_network", virtualbox__intnet: "broadcast_router_1", auto_config: false
+  switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
+  switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
+  switch.vm.provision "shell", path: "SWITCH.sh"
 end
 ```
 
-After VM installation, it will run _switch.sh_ provisioning script.
+After VM installation, it will run _SWITCH.sh_ provisioning script.
 
 #### switch: Provisioning script
 
-In [switch.sh](/switch.sh) with the following lines, I create a bridge named _switch_ and add the interfaces to it:
+In [SWITCH.sh](/SWITCH.sh) with the following lines, I create a bridge named _switch_ and add the interfaces to it:
 
 -   _eth1_ as a trunk port
 -   _eth2_ as an access port for VLAN 10
@@ -280,7 +286,9 @@ In [switch.sh](/switch.sh) with the following lines, I create a bridge named _sw
 
 ```bash
 ovs-vsctl add-br switch
+#the trunk link
 ovs-vsctl add-port switch eth1
+# The access ports
 ovs-vsctl add-port switch eth2 tag=10
 ovs-vsctl add-port switch eth3 tag=20
 ```
@@ -304,21 +312,21 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "host-1-a" do |host1a|
   host1a.vm.box = "minimal/trusty64"
   host1a.vm.hostname = "host-1-a"
-  host1a.vm.network "private_network", virtualbox__intnet: "switch-host1a", auto_config: false
-  host1a.vm.provision "shell", path: "host-1-a.sh"
+  host1a.vm.network "private_network", virtualbox__intnet: "broadcast_host_1_a", auto_config: false
+  host1a.vm.provision "shell", path: "HOST1A.sh"
 end
 ```
 
-After VM installation, it will run _host-1-a.sh_ provisioning script.
+After VM installation, it will run _HOST1A.sh_ provisioning script.
 
 #### host-1-a: Provisioning script
 
-In [host-1-a.sh](/host-1-a.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Finally I add a static route for class B private IP addresses to _router-1_.
+In [HOST1A.sh](/HOST1A.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Finally I add a static route for class B private IP addresses to _router-1_.
 
 ```bash
-ip addr add 172.22.1.1/24 dev eth1
+ip addr add 172.27.1.1/24 dev eth1
 ip link set eth1 up
-ip route replace 172.16.0.0/12 via 172.22.1.254
+ip route replace 172.16.0.0/12 via 172.27.1.254
 ```
 
 ### host-1-b
@@ -331,21 +339,21 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "host-1-b" do |host1b|
   host1b.vm.box = "minimal/trusty64"
   host1b.vm.hostname = "host-1-b"
-  host1b.vm.network "private_network", virtualbox__intnet: "switch-host1b", auto_config: false
-  host1b.vm.provision "shell", path: "host-1-b.sh"
+  host1b.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
+  host1b.vm.provision "shell", path: "HOST1B.sh"
 end
 ```
 
-After VM installation, it will run _host-1-b.sh_ provisioning script.
+After VM installation, it will run _HOST1B.sh_ provisioning script.
 
 #### host-1-b: Provisioning script
 
-In [host-1-b.sh](/host-1-b.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Finally I add a static route for class B private IP addresses to _router-1_.
+In [HOST1B.sh](/HOST1B.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Finally I add a static route for class B private IP addresses to _router-1_.
 
 ```bash
-ip addr add 172.22.2.225/27 dev eth1
+ip addr add 172.27.2.225/27 dev eth1
 ip link set eth1 up
-ip route replace 172.16.0.0/12 via 172.22.2.254
+ip route replace 172.16.0.0/12 via 172.27.2.254
 ```
 
 ### host-2-c
@@ -358,21 +366,21 @@ In [Vagrantfile](/Vagrantfile) with the following lines, I create a trusty64 bas
 config.vm.define "host-2-c" do |host2c|
   host2c.vm.box = "minimal/trusty64"
   host2c.vm.hostname = "host-2-c"
-  host2c.vm.network "private_network", virtualbox__intnet: "router2-host2c", auto_config: false
-  host2c.vm.provision "shell", path: "host-2-c.sh"
+  host2c.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
+  host2c.vm.provision "shell", path: "HOST2C.sh"
 end
 ```
 
-After VM installation, it will run _host-2-c.sh_ provisioning script.
+After VM installation, it will run _HOST2C.sh_ provisioning script.
 
 #### host-2-c: Provisioning script
 
-In [host-2-c.sh](/host-2-c.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Then I add a static route for class B private IP addresses to _router-2_.
+In [HOST2C.sh](/HOST2C.sh) with the following lines, I assign the IP address for interface _eth1_ and set it up. Then I add a static route for class B private IP addresses to _router-2_.
 
 ```bash
-ip addr add 172.22.3.253/30 dev eth1
+ip addr add 172.27.3.253/30 dev eth1
 ip link set eth1 up
-ip route replace 172.16.0.0/12 via 172.22.3.254
+ip route replace 172.16.0.0/12 via 172.27.3.254
 ```
 
 Next I start an Apache container named _webserver_ on port 80 mounting `/var/www/` directory (`docker kill` and `docker rm` will clear any existing containers).

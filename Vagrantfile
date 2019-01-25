@@ -17,44 +17,44 @@ Vagrant.configure("2") do |config|
     vb.memory = 256
     vb.cpus = 1
   end
-  config.vm.define "router-a" do |routera|
-    routera.vm.box = "minimal/trusty64"
-    routera.vm.hostname = "router-a"
-    routera.vm.network "private_network", virtualbox__intnet: "broadcast_router_a", auto_config: false
-    routera.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
-    routera.vm.provision "shell", path: "ROUTER-AtoC.sh"
+  config.vm.define "router-1" do |router1|
+    router1.vm.box = "minimal/trusty64"
+    router1.vm.hostname = "router-1"
+    router1.vm.network "private_network", virtualbox__intnet: "broadcast_router_1", auto_config: false
+    router1.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
+    router1.vm.provision "shell", path: "ROUTER-AtoC.sh"
   end
-  config.vm.define "router-c" do |routerc|
-    routerc.vm.box = "minimal/trusty64"
-    routerc.vm.hostname = "router-c"
-    routerc.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
-    routerc.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
-    routerc.vm.provision "shell", path: "ROUTER-CtoA.sh"
+  config.vm.define "router-2" do |router2|
+    router2.vm.box = "minimal/trusty64"
+    router2.vm.hostname = "router-2"
+    router2.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
+    router2.vm.network "private_network", virtualbox__intnet: "broadcast_inter", auto_config: false
+    router2.vm.provision "shell", path: "ROUTER-2to1.sh"
   end
   config.vm.define "switch" do |switch|
     switch.vm.box = "minimal/trusty64"
     switch.vm.hostname = "switch"
-    switch.vm.network "private_network", virtualbox__intnet: "broadcast_router_a", auto_config: false
+    switch.vm.network "private_network", virtualbox__intnet: "broadcast_router_1", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
     switch.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
     switch.vm.provision "shell", path: "SWITCH.sh"
   end
-  config.vm.define "host-a" do |hosta|
-    hosta.vm.box = "minimal/trusty64"
-    hosta.vm.hostname = "host-a"
-    hosta.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
-    hosta.vm.provision "shell", path: "HOST1A.sh"
+  config.vm.define "host-1-a" do |host1a|
+    host1a.vm.box = "minimal/trusty64"
+    host1a.vm.hostname = "host-1-a"
+    host1a.vm.network "private_network", virtualbox__intnet: "broadcast_host_a", auto_config: false
+    host1a.vm.provision "shell", path: "HOST1A.sh"
   end
-  config.vm.define "host-b" do |hostb|
-    hostb.vm.box = "minimal/trusty64"
-    hostb.vm.hostname = "host-b"
-    hostb.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
-    hostb.vm.provision "shell", path: "HOST1B.sh"
+  config.vm.define "host-1-b" do |host1b|
+    host1b.vm.box = "minimal/trusty64"
+    host1b.vm.hostname = "host-1-b"
+    host1b.vm.network "private_network", virtualbox__intnet: "broadcast_host_b", auto_config: false
+    host1b.vm.provision "shell", path: "HOST1B.sh"
   end
-  config.vm.define "host-c" do |hostc|
-    hostc.vm.box = "minimal/trusty64"
-    hostc.vm.hostname = "host-c"
-    hostc.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
-    hostc.vm.provision "shell", path: "HOST2C.sh"
+  config.vm.define "host-2-c" do |host2c|
+    host2c.vm.box = "minimal/trusty64"
+    host2c.vm.hostname = "host-2-c"
+    host2c.vm.network "private_network", virtualbox__intnet: "broadcast_host_c", auto_config: false
+    host2c.vm.provision "shell", path: "HOST2C.sh"
   end
 end
