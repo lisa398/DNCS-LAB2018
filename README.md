@@ -79,7 +79,6 @@ To reduce the amount of IP necessary,I decided to allocate:
 
 -   **D**: for _router-1_ and _router-2_ -> I used _/30_ as netmask with which you can address up to 2 hosts [2<sup>32-30</sup>-2].
 
-For the last two point 2 hosts are enough for our network.
 
 | Subnet | Devices (Interface)                   | Network address   | Netmask         | # avaible IPs for the hosts              |
 | ------ | ------------------------------------- | ----------------- | --------------- | ----------------------- |
@@ -90,12 +89,27 @@ For the last two point 2 hosts are enough for our network.
 
 ### VLANs
 
-Due to only one connection between _router-1_ and _switch_, the use of virtual LANs is necessary. So I set up 2 VIDs for network A and B.
+The newtork has only one connection between [_router-1_] and [_switch_], the use of virtual LANs is necessary. So I set up 2 VIDs for network A and B.
 
-| VID | Subnet |
-| --- | ------ |
-| 10  | A      |
-| 20  | B      |
+                 +------------+
+                 |            |                
+                 +  router-1  +
+             eth0|            |eth2         
+                 +-----+------+                 
+                       |eth1             | VID | Subnet |
+                       |                 | --- | ------ |
+                       |                 |  10 | A      |
+                       |                 |  20 | B      |   
+                       |                              
+                       |                         
+                       |eth1                   
+            +----------+-----------+         
+            |                      |           
+            +        switch        |            
+        eth0|                      |          
+            +---+--------------+---+
+
+
 
 ### Interface-IP mapping
 
