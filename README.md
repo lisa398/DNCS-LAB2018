@@ -12,6 +12,7 @@ This repository contains the Vagrant files required to run the network.
     -   [VLANs](#vlans)
     -   [Interface-IP mapping](#interface-ip-mapping)
 -   [Reachability](#reachability)
+-   [Web Server](#web-server)
 -   [How-to](#how-to)
 
 ## Network map
@@ -142,9 +143,20 @@ B)`PING 172.27.3.253 (172.27.3.253) 56(84) bytes of data.
 ...-`
 
 
-
 the same you can do it with host-1-b and host-2-c.
 
+## Web-Server
+To test the web server on host-2-c, we just need to download a simple index page, writing the command written below:
+
+`curl 172.27.3.253`
+
+The result it will be:
+<!DOCTYPE html>
+<html>
+<head>
+<title>PAGE TEST HOST-2-C</title>
+</head>
+</html>
 
 ## How-to
 
