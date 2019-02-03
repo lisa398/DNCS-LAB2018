@@ -143,7 +143,7 @@ B)`PING 172.27.3.253 (172.27.3.253) 56(84) bytes of data.
 ...-`
 
 
-the same you can do it with host-1-b and host-2-c.
+the same you can do it with all the other hosts.
 
 ## Web-Server
 To test the web server on host-2-c, we just need to download a simple index page, writing the command written below:
@@ -162,21 +162,11 @@ The result it will be:
 
 ## How-to
 
--   Install VirtualBox
-
--   Install Vagrant
-
--   Clone this repository
+- Install Virtualbox and VagrantInstall Vagrant
+- Clone this repository
 
     ```bash
     ~$ git clone https://github.com/SalaniUNITN/DNCS-LAB2018.git
     ```
 
--   Move into the repository and start creating the machines (on first launch, you don't need `--provision`, it will do it by default)
-
-    ```bash
-    ~$ cd dncs-lab/
-    ~/dncs-lab$ vagrant up --provision
-    ```
-
--   Now it's all set up
+-   Then move into the repo (cd DNCS-LAB2018), finally run the command `vagrant up` to create the virtual topology.
