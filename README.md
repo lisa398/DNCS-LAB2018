@@ -169,7 +169,7 @@ The result it will be:
 -   Clone this repository
 
     ```bash
-    ~$ git clone
+    ~$ git clone https://github.com/SalaniUNITN/DNCS-LAB2018.git
     ```
 
 -   Move into the repository and start creating the machines (on first launch, you don't need `--provision`, it will do it by default)
@@ -180,43 +180,3 @@ The result it will be:
     ```
 
 -   Now it's all set up
-
--   Use `vagrant ssh` to ssh into a running Vagrant machine, for example:
-
-    ```bash
-    ~/dncs-lab$ vagrant ssh host-1-a
-    ```
-
--   To test reachability, you can now ping any machine from any other, for example to ping _host-1-b_ from _host-1-a_:
-
-    ```bash
-    ~/dncs-lab$ vagrant ssh host-1-a
-    vagrant@host-1-a:~$ ping 172.27.2.225
-    ```
-
-    and vice versa:
-
-    ```bash
-    ~/dncs-lab$ vagrant ssh host-1-b
-    vagrant@host-1-b:~$ ping 172.27.1.1
-    ```
-
--   To browse the website hosted on _host-2-c_:
-
-    ```bash
-    curl 172.27.3.253
-    ```
-
-    The output will be:
-
-    ```html
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Home - hostc</title>
-    </head>
-    <body>
-    This is the hostc website homepage
-    </body>
-    </html>
-    ```
