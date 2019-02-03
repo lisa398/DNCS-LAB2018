@@ -12,7 +12,7 @@ This repository contains the Vagrant files required to run the network.
     -   [VLANs](#vlans)
     -   [Interface-IP mapping](#interface-ip-mapping)
 -   [Vagrant and devices configuration](#vagrant-and-devices-configuration)
-    -   [router-1](#router-1)
+    -   [router-1](#router-1) [![host-1-a]
         -   [Virtual machine configuration](#router-1--virtual-machine-configuration)
         -   [Provisioning script](#router-1--provisioning-script)
     -   [router-2](#router-2)
