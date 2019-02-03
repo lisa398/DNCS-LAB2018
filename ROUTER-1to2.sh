@@ -6,7 +6,6 @@ add-apt-repository "deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb
 apt-get update
 apt-get install -y frr --assume-yes --force-yes
 
-
 #PROVISIONING
 vagrant up --provision
 

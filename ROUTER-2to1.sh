@@ -19,6 +19,7 @@ ip addr add 172.31.255.254/30 dev eth2
 ip link set eth1 up
 ip link set eth2 up
 
+#set up OSPFD
 sysctl net.ipv4.ip_forward=1
 sed -i 's/zebra=no/zebra=yes/g' /etc/frr/daemons
 sed -i 's/ospfd=no/ospfd=yes/g' /etc/frr/daemons
