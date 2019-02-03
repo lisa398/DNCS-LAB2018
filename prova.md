@@ -1,5 +1,7 @@
-## Project title
-A little info about your project and/ or overview that explains **what** the project is about.
+## DNCS-LAB assigment by Nicola Arnoldi
+
+A.Y. 2018/19  
+This repository contains the Vagrant files required to run the network.
 
 ## Motivation
 A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
