@@ -84,7 +84,7 @@ The newtork has only one connection between [_router-1_] and [_switch_], the use
 
 ### Interface-IP mapping
 
-I chose lower IP addresses for hosts and higher for routers.
+We chose lower IP addresses for hosts and higher for routers.
 
 | Device   | Interface | IP                | Subnet | VLAN VID  |
 |:--------:|:---------:|:-----------------:|:------:|:---------:|
