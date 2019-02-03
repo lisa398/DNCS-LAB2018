@@ -151,12 +151,14 @@ To test the web server on host-2-c, we just need to download a simple index page
 `curl 172.27.3.253`
 
 The result it will be:
+```html
 <!DOCTYPE html>
 <html>
 <head>
 <title>PAGE TEST HOST-2-C</title>
 </head>
 </html>
+```
 
 ## How-to
 
