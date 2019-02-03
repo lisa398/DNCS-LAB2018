@@ -2,6 +2,8 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y tcpdump --assume-yes
 apt install -y curl --assume-yes
+
+#PROVISIONING
 vagrant provision host-1-a
 
 # Set-up the ip add

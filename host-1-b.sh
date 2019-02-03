@@ -2,6 +2,8 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y docker-ce
 apt install -y curl --assume-yes
+
+#PROVISIONING
 vagrant provision host-1-b
 
 # Set-up the ip add

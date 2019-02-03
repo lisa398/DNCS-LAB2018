@@ -1,4 +1,4 @@
-## DNCS-LAB assigment by Nicola Arnoldi [![js-standard-style]
+## DNCS-LAB assigment by Nicola Arnoldi
 
 A.Y. 2018/19  
 This repository contains the Vagrant files required to run the network.
