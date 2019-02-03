@@ -11,7 +11,7 @@ This repository contains the Vagrant files required to run the network.
     -   [Subnets](#subnets)
     -   [VLANs](#vlans)
     -   [Interface-IP mapping](#interface-ip-mapping)
--   Reachability test
+-   [Reachability] (#reachability)
 -   [How-to](#how-to)
 
 ## Network map
@@ -126,7 +126,7 @@ end
 ##Reachability
 
 To test the reachability of the web server, you can ping any machine from any other, for example to ping _host-1-b_ from _host-1-a_:
-' ping 172.27.2.225'
+`ping 172.27.2.225`
 
 
 ## How-to
