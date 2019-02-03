@@ -127,8 +127,9 @@ end
 
 To test the reachability of the web server, you can ping any machine from any other, for example:
 
--A)to ping _host-1-b_ from _host-1-a_: `ping 172.27.2.225`
--B)to ping _host-2-c_ from _host-1-a_: `ping 172.27.3.253`
+-A) to ping _host-1-b_ from _host-1-a_: `ping 172.27.2.225`
+
+-B) to ping _host-2-c_ from _host-1-a_: `ping 172.27.3.253`
 
 and expect the following result:
 
