@@ -125,12 +125,23 @@ end
 
 ## Reachability
 
-To test the reachability of the web server, you can ping any machine from any other, for example to ping _host-1-b_ from _host-1-a_:
-`ping 172.27.2.225` and expect the following result
+To test the reachability of the web server, you can ping any machine from any other, for example:
+-A)to ping _host-1-b_ from _host-1-a_: `ping 172.27.2.225`
+-B)to ping _host-2-c_ from _host-1-a_: `ping 172.27.3.253`
 
-`PING 172.27.2.225 (172.27.2.225) 56(84) bytes of data.
+and expect the following result:
+
+A)`PING 172.27.2.225 (172.27.2.225) 56(84) bytes of data.
 64 bytes from 172.27.2.225: icmp_seq=1 ttl=63 time=4.57 ms
 ...`
+
+B)`PING 172.27.3.253 (172.27.3.253) 56(84) bytes of data.
+64 bytes from 172.27.3.253: icmp_seq=1 ttl=62 time=1.73 ms
+...-`
+
+
+
+the same you can do it with host-1-b and host-2-c.
 
 
 ## How-to
