@@ -11,7 +11,7 @@ This repository contains the Vagrant files required to run the network.
     -   [Subnets](#subnets)
     -   [VLANs](#vlans)
     -   [Interface-IP mapping](#interface-ip-mapping)
--   [Reachability] (#reachability)
+-   [Reachability](#reachability)
 -   [How-to](#how-to)
 
 ## Network map
