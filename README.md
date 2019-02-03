@@ -145,7 +145,7 @@ B)`PING 172.27.3.253 (172.27.3.253) 56(84) bytes of data.
 
 the same you can do it with all the other hosts.
 
-## Web-Server
+## Web Server
 To test the web server on host-2-c, we just need to download a simple index page, writing the command written below:
 
 `curl 172.27.3.253`
