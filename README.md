@@ -140,7 +140,7 @@ A)`PING 172.27.2.225 (172.27.2.225) 56(84) bytes of data.
 
 B)`PING 172.27.3.253 (172.27.3.253) 56(84) bytes of data.
 64 bytes from 172.27.3.253: icmp_seq=1 ttl=62 time=1.73 ms
-...-`
+...`
 
 
 the same you can do it with all the other hosts.
