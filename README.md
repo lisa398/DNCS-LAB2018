@@ -162,7 +162,8 @@ The result it will be:
 
 ## How-to
 
-- Install Virtualbox and install Vagrant
+- Install Virtualbox
+- Install Vagrant
 - Clone this repository
 
     ```bash
