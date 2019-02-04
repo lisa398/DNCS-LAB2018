@@ -11,6 +11,7 @@ apt-get install -y docker-ce --assume-yes --force-yes
 # Set-up the ip add
 ip addr add 172.27.3.253/30 dev eth1
 ip link set eth1 up
+
 ip route replace 172.16.0.0/12 via 172.27.3.254
 
 # Create a sample index page
