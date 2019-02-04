@@ -60,7 +60,7 @@ This repository contains the Vagrant files required to run the network.
 
 ### VLANs
 
-The newtork has only one connection between [_router-1_] and [_switch_], the use of virtual LANs is necessary. So I set up 2 VIDs for network A and B.
+The newtork has only one connection between [_router-1_] and [_switch_], the use of virtual LANs is necessary. So we set up 2 VIDs for network A and B.
 
                  +------------+
                  |            |                
@@ -100,7 +100,7 @@ We chose lower IP addresses for hosts and higher for routers.
 ## Vagrant and devices configuration
 
 
-In order to create and configure the network devices, in [Vagrantfile](/Vagrantfile) were introduce some lines as follow:
+In order to create and configure the network devices, in [Vagrantfile](/Vagrantfile) were introduced some lines as follow:
 
 ```ruby
 config.vm.define "router-1" do |routera|
